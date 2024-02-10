@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  h1 {
+    @apply text-3xl text-slate-800;
+  }
+} */
+#wpwrap {
+  /* @apply bg-slate-300; */
+}
+
+#wpbody-content {
+  /* @apply bg-slate-300; */
+  /* @apply pb-0; */
+}
+
+ul#adminmenu a.wp-has-current-submenu:after,
+ul#adminmenu > li.current > a.current:after {
+  @apply border-r-slate-300;
+}
+
+#mailtrap-settings {
+  @apply bg-white;
+  @apply p-4;
+  @apply rounded-lg;
+  @apply shadow-md;
+  @apply border border-slate-300;
+}
+
+#mailtrap-settings h1 {
+  @apply text-3xl;
+  @apply text-slate-800;
+}
+
+#mailtrap-settings p {
+  @apply text-slate-600;
+}
+
+#mailtrap-settings input[type="text"] {
+  @apply w-full;
+  @apply p-2;
+  @apply border border-slate-300;
+  @apply rounded-md;
+  @apply shadow-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+  @apply focus:ring-indigo-500;
+  @apply focus:border-indigo-500;
+}
+
+#mailtrap-settings input[type="submit"] {
+  @apply w-full;
+  @apply p-2;
+  @apply bg-indigo-600;
+  @apply text-white;
+  @apply rounded-md;
+  @apply shadow-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+  @apply focus:ring-indigo-500;
+  @apply focus:border-indigo-500;
+}
+
+#mailtrap-settings input[type="submit"]:hover {
+  @apply bg-indigo-700;
+}
+
+#mailtrap-settings #mailtrap_enabled {
+  @apply ml-4;
+}
+
+#mailtrap-form {
+  @apply w-full;
+  @apply p-4;
+  @apply bg-white;
+  @apply rounded-lg;
+  @apply shadow-md;
+  @apply border border-slate-300;
+}

@@ -156,6 +156,13 @@ class Mailtrap {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'mailtrap_page' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_mailtrap_settings' );
+        $mailtrap_enabled = get_option('mailtrap_enabled');
+		if ($mailtrap_enabled) {
+			$this->loader->add_action( 'phpmailer_init', $plugin_admin, 'mailtrap' );
+			$this->loader->add_action( 'wp_ajax_send_test_mail', $plugin_admin, 'send_test_mail' );
+		}
 
 	}
 

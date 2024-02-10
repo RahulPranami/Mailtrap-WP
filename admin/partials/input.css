@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#mailtrap-settings {
+  @apply bg-white;
+  @apply p-4;
+  @apply rounded-lg;
+  @apply shadow-md;
+  @apply border border-slate-300;
+}
+
+#mailtrap-settings h3 {
+  @apply text-2xl;
+  @apply text-slate-800;
+  @apply font-bold;
+  @apply text-center;
+  /* @apply pb-4 border-b-2 border-b-slate-200; */
+  /* @apply mt-2; */
+}
+
+#mailtrap-settings label {
+  @apply text-base text-slate-600;
+}
+
+#mailtrap-settings select {
+  @apply w-full;
+  @apply p-2 px-4;
+  @apply border border-slate-300;
+  @apply rounded-md;
+  @apply shadow-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+  @apply focus:ring-indigo-500;
+  @apply focus:border-indigo-500;
+  /* @apply mt-1; */
+  /* @apply mt-1 bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500; */
+}
+#mailtrap-settings select option {
+  @apply bg-white;
+  @apply text-gray-700;
+  @apply border border-gray-300;
+
+}
+
+#mailtrap-settings input[type="text"] {
+  @apply w-full;
+  @apply p-2;
+  @apply border border-slate-300;
+  @apply rounded-md;
+  @apply shadow-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+  @apply focus:ring-indigo-500;
+  @apply focus:border-indigo-500;
+}
+
+#mailtrap-settings input[type="submit"] {
+  @apply w-full;
+  @apply p-2;
+  @apply bg-indigo-600;
+  @apply text-white;
+  @apply rounded-md;
+  @apply shadow-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+  @apply focus:ring-indigo-500;
+  @apply focus:border-indigo-500;
+}
+
+#mailtrap-settings input[type="submit"]:hover {
+  @apply bg-indigo-700;
+}
+
+.notice-error,
+.notice-warning,
+.notice-info,
+.notice-success {
+  @apply border px-4 py-3 rounded relative mb-4;
+}
+
+.notice-error {
+  @apply bg-red-100 border-red-400 text-red-700;
+}
+
+.notice-warning {
+  @apply bg-yellow-100 border-yellow-400 text-yellow-700;
+}
+
+.notice-info {
+  @apply bg-blue-100 border-blue-400 text-blue-700;
+}
+
+.notice-success {
+  @apply bg-green-100 border-green-400 text-green-700;
+}
