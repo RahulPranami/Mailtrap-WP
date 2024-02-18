@@ -139,22 +139,51 @@ class Mailtrap_Admin {
 		global $wpdb;
 
 		// print_r($_POST);
+		$curl = curl_init();
+
 
 		$from_email = get_option('mailtrap_from_email');
 		$to_email = $_POST['to_email'];
 		// $email_sent = null;
 		$emailBody = "This is Example Mail";
 
-			    if($_SERVER['REQUEST_METHOD'] == 'POST')
-			    {
-			    //   if (!wp_verify_nonce( $_POST['_wpnonce'], 'mailtrap_test_action' ) ) {
-			    //     die( 'Failed security check' );
-			    //   }
+		// require_once ABSPATH . WPINC . '/class-phpmailer.php';
 
-			      $email_sent = wp_mail( $_POST['to_email'], __( 'Mailtrap for Wordpress Plugin', 'mailtrap-for-wp' ), $emailBody);
+		$mail = new PHPMailer(true);
+		$mail->isSMTP();
+		$mail->Host       = 'sandbox.smtp.mailtrap.io'; // e.g., 'live.smtp.mailtrap.io'
+		$mail->SMTPAuth   = true;
+		$mail->Username   = '337528edd519a1'; // Mailtrap API username
+		$mail->Password   = '5ad2c519903086'; // Mailtrap API password
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port       =  587; // Mailtrap SMTP port
 
-				  print_r($email_sent);
-			    }
+		// Set the email details
+		$mail->setFrom($from_email, "Mailtrap for Wordpress");
+		$mail->addAddress($to_email);
+		$mail->Subject = "Test Email";
+		$mail->Body    = $emailBody;
+
+		// Try to send the email
+		if (!$mail->send()) {
+			error_log("Mailtrap SMTP Error: {$mail->ErrorInfo}");
+			echo "Mailtrap SMTP Error: {$mail->ErrorInfo}";
+			return false;
+		} else {
+			echo "Mailtrap Successfully Send Email";
+			return true;
+		}
+
+			    // if($_SERVER['REQUEST_METHOD'] == 'POST')
+			    // {
+			    // //   if (!wp_verify_nonce( $_POST['_wpnonce'], 'mailtrap_test_action' ) ) {
+			    // //     die( 'Failed security check' );
+			    // //   }
+
+			    //   $email_sent = wp_mail( $_POST['to_email'], __( 'Mailtrap for Wordpress Plugin', 'mailtrap-for-wp' ), $emailBody);
+
+				//   print_r($email_sent);
+			    // }
 
 // 		$curl = curl_init();
 // 		$emailBody = "This is Example Mail";
@@ -207,25 +236,11 @@ class Mailtrap_Admin {
 		// 	CURLOPT_POSTFIELDS => json_encode([
 		// 		'to' => [
 		// 			[
-		// 				'email' => 'john_doe@example.com',
-		// 				'name' => 'John Doe'
-		// 			]
-		// 		],
-		// 		'cc' => [
-		// 			[
-		// 				'email' => 'jane_doe@example.com',
-		// 				'name' => 'Jane Doe'
-		// 			]
-		// 		],
-		// 		'bcc' => [
-		// 			[
-		// 				'email' => 'james_doe@example.com',
-		// 				'name' => 'Jim Doe'
+		// 				'email' => $to_email
 		// 			]
 		// 		],
 		// 		'from' => [
-		// 			'email' => 'sales@example.com',
-		// 			'name' => 'Example Sales Team'
+		// 			'email' => $from_email
 		// 		],
 		// 		'attachments' => [
 		// 			[
@@ -248,7 +263,7 @@ class Mailtrap_Admin {
 		// 	]),
 		// 	CURLOPT_HTTPHEADER => [
 		// 		"Accept: application/json",
-		// 		"Api-Token: 9f1ad6b05db85ce7c1e050acc4cbd9a4",
+		// 		"Api-Token: ${get_option('mailtrap_api_token')}",
 		// 		"Content-Type: application/json"
 		// 	],
 		// ]);
